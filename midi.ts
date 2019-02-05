@@ -167,7 +167,7 @@ namespace midi {
         //% blockGap=8 weight=81
         //% group="Channels"
         noteOn(key: number, velocity = 0): void {
-            key = key >> 0;
+            //key = key >> 0;
             if (key < 0 || key > 0x7f) return;
 
             sendMessage([0x90 | this.channel, key, velocity || this.velocity]);
@@ -182,7 +182,7 @@ namespace midi {
         //% blockGap=8 weight=80
         //% group="Channels"
         noteOff(key: number, velocity = 0): void {
-            key = key >> 0;
+            //key = key >> 0;
             if (key < 0 || key > 0x7f) return;
 
             sendMessage([0x80 | this.channel, key, velocity || this.velocity]);
@@ -197,7 +197,7 @@ namespace midi {
         //% weight=70
         //% group="Channels"
         setInstrument(instrument: number): void {
-            instrument = instrument >> 0;
+            //instrument = instrument >> 0;
             instrument -= 1;
             if (instrument < 0 || instrument > 0x7f) return;
 
@@ -213,7 +213,7 @@ namespace midi {
         //% blockGap=8 weight=79
         //% group="Channels"
         setVelocity(velocity: number): void {
-            velocity = velocity >> 0;
+            //velocity = velocity >> 0;
             this.velocity = velocity & 0x7f;
         }
 
@@ -225,7 +225,7 @@ namespace midi {
         //% amount.min=0 amount.max=16383  weight=78
         //% group="Channels"
         pitchBend(amount: number) {
-            amount = amount >> 0;
+            //amount = amount >> 0;
             amount = Math.max(0, amount & 0x3fff);
             sendMessage([0xe0 | this.channel, amount & 0x7f, (amount >> 7) & 0x7f]);
         }
@@ -238,7 +238,7 @@ namespace midi {
         //% blockGap=8
         //% group="Channels"
         command(cmd: number) {
-            cmd = cmd >> 0;
+            //cmd = cmd >> 0;
             sendMessage([cmd | this.channel]);
         }
 
@@ -251,7 +251,7 @@ namespace midi {
         //% group="Channels"
         //% program.min=0 program.max=127
         programChange(program: number) {
-            program = program >> 0;
+            //program = program >> 0;
             sendMessage([0xc0 | this.channel, program & 0x7f]);
         }
 
@@ -265,7 +265,7 @@ namespace midi {
         //% group="Channels"
         //% pressure.min=0 pressure.max=127
         aftertouch(pressure: number) {
-            pressure = pressure >> 0;
+            //pressure = pressure >> 0;
             sendMessage([0xd0 | this.channel, pressure & 0x7f]);
         }
 
@@ -280,7 +280,7 @@ namespace midi {
         //% key.min=0 key.max=127
         //% pressure.min=0 pressure.max=127
         polyphonicAftertouch(key: number, pressure: number) {
-            key = key >> 0;
+            //key = key >> 0;
             pressure = pressure >> 0;
             sendMessage([0xa0 | this.channel, key & 0x7f, pressure & 0x7f]);
         }
@@ -297,8 +297,8 @@ namespace midi {
         //% fn.min=0 fn.max=119
         //% value.min=0 value.max=127
         controlChange(fn: number, value: number) {
-            fn = fn >> 0;
-            value = value >> 0;
+            //fn = fn >> 0;
+            //value = value >> 0;
             sendMessage([0xb0 | this.channel, fn & 0x7f, value & 0x7f]);
         }
 
