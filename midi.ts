@@ -149,7 +149,7 @@ namespace midi {
         //% blockGap=8 weight=82
         //% group="Channels"
         note(key: number, duration: number): void {
-            key = key >> 0;
+            //key = key >> 0;
             if (duration > 0) {
                 this.noteOn(key);
                 basic.pause(duration);
